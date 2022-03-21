@@ -3,6 +3,11 @@
 require 'function.php';
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
+// ketika tombol cari di klik maka akan menampilkan hasil data yang dicari
+if (isset($_POST["cari"])) {
+  $mahasiswa = cari($_POST["keyword"]);
+}
+
 ?>
 
 
@@ -51,9 +56,14 @@ table tr:nth-child(even) {
 <body background="wndaa.jpeg">
 
     <h1>Daftar Mahasiswa</h1>
+    <form action="" method="POST">
+        <input type="text" name="keyword" size="40" autofocus placeholder="Cari data yang diinginkan.." autocomplete="off">
+        <button type="submit" name="cari"> Search</button>
+    </form>
 
     <a href="tambah.php">Tambah Data</a>
     <br><br>
+
 
     <table style="margin-left:auto;margin-right:auto"  border="1" cellpadding="10" cellspacing="0">
         <tr>
